@@ -8,3 +8,17 @@
 -- 注意: 先に DDL/テストデータを投入し、対象DBを USE 済みであること。
 
 /* ANSWER HERE */
+SELECT
+  u.id,
+  u.name,
+  u.email
+FROM
+  users u
+WHERE
+  NOT EXISTS (
+    SELECT 1
+    FROM orders o
+    WHERE o.user_id = u.id
+  )
+ORDER BY
+  u.id;

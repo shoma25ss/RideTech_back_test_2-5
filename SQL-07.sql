@@ -8,3 +8,20 @@
 -- 注意: 先に DDL/テストデータを投入し、対象DBを USE 済みであること。
 
 /* ANSWER HERE */
+SELECT
+  p.id AS product_id,
+  p.name AS product_name,
+  SUM(oi.qty * oi.unit_price) AS revenue
+FROM
+  order_items oi
+JOIN
+  orders o ON oi.order_id = o.id
+JOIN
+  products p ON oi.product_id = p.id
+WHERE
+  YEAR(o.order_date) = 2024
+GROUP BY
+  p.id
+ORDER BY
+  revenue DESC
+LIMIT 10;

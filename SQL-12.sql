@@ -8,3 +8,19 @@
 -- 注意: 先に DDL/テストデータを投入し、対象DBを USE 済みであること。
 
 /* ANSWER HERE */
+SELECT
+u.id AS user_id,
+u.name,
+COUNT(o.id) AS order_count
+FROM
+orders o
+JOIN
+users u ON o.user_id = u.id
+WHERE
+YEAR(o.order_date) = 2024
+GROUP BY
+o.user_id,
+u.name
+ORDER BY
+o.user_id DESC
+limit 5;

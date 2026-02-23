@@ -9,3 +9,14 @@
 -- 注意: 先に DDL/テストデータを投入し、対象DBを USE 済みであること。
 
 /* ANSWER HERE */
+SELECT
+  DATE_FORMAT(order_date, '%Y-%m') AS ym,
+  SUM(total_amount) AS total
+FROM
+  orders
+WHERE
+  YEAR(order_date) = 2024
+GROUP BY
+  DATE_FORMAT(order_date, '%Y-%m')
+ORDER BY
+  ym;

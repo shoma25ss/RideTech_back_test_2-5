@@ -9,7 +9,12 @@
 -- 安全策: 同じ WHERE 条件で事前に SELECT 件数確認を推奨（誤更新・誤削除防止）。
 
 /* ANSWER HERE */
-
+DELETE
+FROM logs
+WHERE
+created_at < '2024-01-01'
+ORDER BY
+created_at ASC LIMIT 1000;
 
 -- 確認用出力（削除後の残り件数）
 SELECT COUNT(*) AS remaining_before_2024

@@ -7,3 +7,11 @@
 -- 注意: 先に DDL/テストデータを投入し、対象DBを USE 済みであること。
 
 /* ANSWER HERE */
+SELECT
+  id,
+  name
+FROM
+  users
+ORDER BY
+  created_at DESC
+LIMIT 10;

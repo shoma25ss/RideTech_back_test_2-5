@@ -6,3 +6,12 @@
 -- 注意: 先に DDL/テストデータを投入し、対象DBを USE 済みであること。
 
 /* ANSWER HERE */
+SELECT
+  status,
+  COUNT(*) AS cnt
+FROM
+  users
+GROUP BY
+  status
+ORDER BY
+  cnt DESC;
