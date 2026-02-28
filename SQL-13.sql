@@ -19,3 +19,6 @@ orders o ON o.user_id = u.id
 GROUP BY
 o.user_id,
 u.name
+ORDER BY
+avg_amount DESC,
+user_id ASC;

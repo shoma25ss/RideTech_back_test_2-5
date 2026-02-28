@@ -9,9 +9,9 @@
 
 /* ANSWER HERE */
 SELECT
-  o.id,
+  o.id AS order_id,
   o.user_id,
-  u.name,
+  u.name AS user_name,
   o.order_date,
   o.total_amount
 FROM
@@ -21,4 +21,5 @@ JOIN
 WHERE
   YEAR(o.order_date) = 2024
 ORDER BY
-  o.order_date DESC;
+  o.order_date DESC,
+  o.id DESC;

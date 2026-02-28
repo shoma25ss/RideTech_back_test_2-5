@@ -22,5 +22,6 @@ GROUP BY
 o.user_id,
 u.name
 ORDER BY
-o.user_id DESC
+order_count DESC,
+user_id ASC
 limit 5;
