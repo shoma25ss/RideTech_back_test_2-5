@@ -10,8 +10,16 @@
 -- 安全策: 同じ WHERE 条件で事前に SELECT 件数確認を推奨（誤更新・誤削除防止）。
 
 /* ANSWER HERE */
-
-
+UPDATE users u
+SET u.status = 'inactive'
+WHERE
+  u.status <> 'inactive'
+  AND NOT EXISTS (
+    SELECT 1
+    FROM orders o
+    WHERE o.user_id = u.id
+      AND o.order_date >= CURDATE() - INTERVAL 180 DAY
+  );
 -- 確認用出力（更新後のステータスが inactive のユーザー一覧）
 SELECT id, name, status
 FROM users

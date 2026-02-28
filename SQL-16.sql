@@ -9,3 +9,35 @@
 -- 注意: 先に DDL/テストデータを投入し、対象DBを USE 済みであること。
 
 /* ANSWER HERE */
+SELECT
+  category_name,
+  product_id,
+  product_name,
+  revenue
+FROM (
+  SELECT
+    c.name AS category_name,
+    p.id AS product_id,
+    p.name AS product_name,
+    SUM(oi.qty * oi.unit_price) AS revenue,
+    ROW_NUMBER() OVER (
+      PARTITION BY c.id
+      ORDER BY SUM(oi.qty * oi.unit_price) DESC
+    ) AS rn
+  FROM
+    orders o
+  JOIN
+    order_items oi ON o.id = oi.order_id
+  JOIN
+    products p ON p.id = oi.product_id
+  JOIN
+    categories c ON c.id = p.category_id
+  WHERE
+    YEAR(o.order_date) = 2024
+  GROUP BY
+    c.id, c.name, p.id, p.name
+) t
+WHERE
+  rn = 1
+ORDER BY
+  category_name;

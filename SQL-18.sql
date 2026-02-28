@@ -9,3 +9,14 @@
 -- 注意: 先に DDL/テストデータを投入し、対象DBを USE 済みであること。
 
 /* ANSWER HERE */
+SELECT
+  DATE_FORMAT(created_at, '%Y-%m-%d %H:00') AS hour_unit,
+  COUNT(*) AS error_count
+FROM
+  logs
+WHERE
+  level = 'error'
+GROUP BY
+  DATE_FORMAT(created_at, '%Y-%m-%d %H:00')
+ORDER BY
+  hour_unit ASC;

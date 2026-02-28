@@ -8,3 +8,14 @@
 -- 注意: 先に DDL/テストデータを投入し、対象DBを USE 済みであること。
 
 /* ANSWER HERE */
+SELECT
+  p.id,
+  p.name
+FROM
+  products p
+LEFT JOIN
+  order_items oi ON p.id = oi.product_id
+WHERE
+  oi.id IS NULL
+ORDER BY
+  p.id ASC;
