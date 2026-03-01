@@ -10,7 +10,6 @@
 /* ANSWER HERE */
 SELECT
   o.id AS order_id,
-  o.user_id,
   u.name AS user_name,
   o.order_date,
   o.total_amount
